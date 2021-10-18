@@ -36,6 +36,7 @@ public class Calkulator {
                     case '/':
                         if ( b==0) {
                             System.out.println("Cant divide by 0");
+                            return result = calc(a, b, getOperation());
                         }
                         result = a / b;
                         break;

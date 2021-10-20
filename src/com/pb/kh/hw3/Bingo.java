@@ -14,7 +14,7 @@ public class Bingo {
         System.out.println(ranNum);
         int attempt = 0;
         final int maxattempt = 5;
-        int quit = (911);
+        int quit = 911;
 
 
         while (attempt < maxattempt) {

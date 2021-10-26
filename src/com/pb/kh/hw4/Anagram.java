@@ -46,9 +46,7 @@ public class Anagram {
         valueOfc2=valueOfc2.replaceAll( " " , "" );
         System.out.println(valueOfc1);
         System.out.println(valueOfc2);
-        System.out.println(valueOfc1.equalsIgnoreCase ( valueOfc2 ) ) ;
-        boolean result=valueOfc1.equalsIgnoreCase(valueOfc2);
-        System.out.println("There is anagram: " + result);
+        System.out.println("There is anagram: " + valueOfc1.equalsIgnoreCase ( valueOfc2 ) ) ;
 
         return isAnagram();
     }

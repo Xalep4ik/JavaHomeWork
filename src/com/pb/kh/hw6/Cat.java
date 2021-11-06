@@ -7,13 +7,15 @@ public class Cat extends Animal{
 
     public String softy = "Пушистый";
 
-
+    public Cat(String name, String food, String location) {
+        super(name, food, location);
+    }
 
     @Override
     public void makeNoise() {
-
         super.makeNoise();
-        System.out.println("Мяу Мяу ");
+        System.out.println("MMMMMRRRRR");
+
     }
 
     @Override

@@ -1,12 +1,13 @@
 package com.pb.kh.hw6;
 
+import java.util.Objects;
+
 public class Dog extends Animal{
 
-    public String friendly = "Дружелюбный";
+    public String friendly;
 
-    @Override
-    public String getName() {
-        return super.getName();
+    public Dog(String name, String food, String location) {
+        super(name, food, location);
     }
 
     @Override
@@ -29,19 +30,11 @@ public class Dog extends Animal{
 
     @Override
     public String toString() {
-        return super.toString();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        System.out.println("Сравнение животных: ");
-        return super.equals(o);
-    }
-
-    @Override
-    public int hashCode() {
-        System.out.println(getName() + "hash: ");
-        return super.hashCode();
+        return "Animal{" +
+                "name='" + getName() + '\'' +
+                ", food='" +getFood() + '\'' +
+                ", location='" + getLocation() + '\'' +
+                '}';
     }
 
 }

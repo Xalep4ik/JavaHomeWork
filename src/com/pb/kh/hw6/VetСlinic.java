@@ -1,46 +1,38 @@
 package com.pb.kh.hw6;
 
+import java.lang.reflect.Constructor;
 import java.util.Arrays;
 
 public class VetСlinic {
 
-    //В цикле отправляйте животных на прием к ветеринару.
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
 
-
-        Dog dog = new Dog();
-        Cat cat = new Cat();
-        Horse horse = new Horse();
-        dog.setName("Тузик ");
-        cat.setName("Барсик ");
-        horse.setName("Молния ");
-        dog.setFood("Мясо");
-        cat.setFood("Рыба");
-        horse.setFood("Трава");
-        dog.setLocation("Будка");
-        cat.setLocation("Дом");
-        horse.setLocation("Конюшня");
+        Animal dog = new Animal("Тузик ", "Мясо ", "Будка ");
+        Animal cat = new Animal("Барсик ", "Рыба ", "Дом ");
+        Animal horse = new Animal("Молния ", "Трава ", "Конюшня ");
 
         cat.makeNoise();
         cat.eat();
         cat.sleep();
 
-        System.out.println(dog.equals(cat));
-        System.out.println(dog.hashCode());
-        System.out.println(cat.equals(horse));
-        System.out.println(cat.toString());
-        System.out.println(cat.hashCode());
+        System.out.println("Dog is cat :" + dog.equals(cat));
+        System.out.println("Dog Hashcode :" + dog.hashCode());
+        System.out.println("Cat is horse :" + cat.equals(horse));
+        System.out.println("Cat Hashcode :" + cat.hashCode());
 
-        Animal[] animals = new Animal[] {cat,dog,horse};
+        Animal[] animals = new Animal[]{cat, dog, horse};
         System.out.println(Arrays.asList(animals));
-        System.out.println("=====================");
+        System.out.println("==================================");
 
         Veterinarian veterinarian = new Veterinarian();
-        veterinarian.treatAnimal();
-
-
-
+        Class clazz = veterinarian.getClass();
+        System.out.println(clazz);
+        veterinarian.treatAnimal(cat);
+        veterinarian.treatAnimal(dog);
+        veterinarian.treatAnimal(horse);
+        System.out.println("-----------------------------------");
+        clazz.getConstructor();
 
 
     }

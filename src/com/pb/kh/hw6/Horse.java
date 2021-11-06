@@ -4,6 +4,10 @@ public class Horse extends Animal{
 
     public String speedy = "Быстрый";
 
+    public Horse(String name, String food, String location) {
+        super(name, food, location);
+    }
+
     @Override
     public void makeNoise() {
 
@@ -26,10 +30,13 @@ public class Horse extends Animal{
     }
     @Override
     public String toString() {
-        return super.toString();
+        return "Animal{" +
+                "name='" + getName() + '\'' +
+                ", food='" + getFood() + '\'' +
+                ", location='" + getLocation() + '\'' +
+                '}';
     }
-    @Override
-    public boolean equals(Object o) {
+        public boolean equals(Object o) {
         System.out.println("Сравнение животных: ");
         return super.equals(o);
     }

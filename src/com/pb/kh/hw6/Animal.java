@@ -6,33 +6,36 @@ import java.util.Objects;
 
 public class Animal {
 
-        private String name;
-        private String food;
-        private String location;
+    private String name;
+    private String food;
+    private String location;
 
 
-    public Animal() {
+    public Animal(String name, String food, String location) {
+        this.name = name;
+        this.food = food;
+        this.location = location;
+    }
+
+    public String getFood() {
+        return food;
+    }
+
+    public void setFood(String food) {
+        this.food = food;
+    }
+
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
         public String getName() { return name; }
 
         public void setName(String name) { this.name = name; }
-
-        public String getFood () {
-            return food;
-        }
-
-        public void setFood (String food){
-            this.food = food;
-        }
-
-        public String getLocation () {
-            return location;
-        }
-
-        public void setLocation (String location){
-            this.location = location;
-        }
 
         public void makeNoise () { System.out.println( name + "животное говорит : "); }
 
@@ -42,14 +45,7 @@ public class Animal {
             System.out.println( name + "животное спит. ");
         }
 
-    @Override
-    public String toString() {
-        return "Animal{" +
-                "name='" + name + '\'' +
-                ", food='" + food + '\'' +
-                ", location='" + location + '\'' +
-                '}';
-    }
+
 
     @Override
     public boolean equals(Object o) {

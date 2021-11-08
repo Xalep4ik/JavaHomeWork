@@ -21,20 +21,17 @@ public class Library {
 
         Book [] books = new Book[] {book1,book2,book3};
         System.out.println("==================================");
-        System.out.println(Arrays.asList(books));
+        for (int b = 0; b<books.length; b++)
+            System.out.println(books[b]);
 
 
         System.out.println("==================================");
-        reader1.takeBook(books.length);
-        System.out.println("==================================");
-        reader1.takeBook(book1.bookName+book2.bookName+book3.bookName);
-        System.out.println("==================================");
+        reader1.takeBook(3);
+        reader1.takeBook(book1,book2,book3);
         reader3.takeBook(book1,book2,book3);
 
-        reader2.returnBook(books.length);
-        System.out.println("==================================");
-        reader2.returnBook(book1.bookName+book2.bookName+book3.bookName);
-        System.out.println("==================================");
+        reader2.returnBook(3);
+        reader2.returnBook(book1,book2,book3);
         reader3.returnBook(book1,book2,book3);
 
 

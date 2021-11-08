@@ -13,5 +13,17 @@ public class Book {
         this.author = author;
         this.year = year;
     }
+    public String getInfo() {
+        return bookName + " (" + author + " " + year + " г.)";
+    }
+
+    @Override
+    public String toString() {
+        return "Book{" +
+                "bookName='" + bookName + '\'' +
+                ", author='" + author + '\'' +
+                ", year='" + year + '\'' +
+                '}';
+    }
 }
 

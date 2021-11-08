@@ -20,35 +20,51 @@ public class Reader {
   this.phone = phone;
  }
 
+ @Override
+ public String toString() {
+  return "Reader{" +
+          "readerName='" + readerName + '\'' +
+          ", numberReader='" + numberReader + '\'' +
+          ", faculty='" + faculty + '\'' +
+          ", birthday='" + birthday + '\'' +
+          ", phone='" + phone + '\'' +
+          '}';
+ }
+
  public void takeBook(int bookCount){
-  for (int i = 0; i<=bookCount; i++)
-   break;
-  System.out.println(readerName + " взял :" + bookCount + " книги");
+  System.out.println(readerName + " взял : " + bookCount + " книги");
+  System.out.println("==================================");
  }
 
- public void takeBook(String bookName){
-  System.out.println(readerName + " взял книги : " + bookName );
-
+ public void takeBook(String... bookNames){
+  for (String name : bookNames) {
+   System.out.println(readerName + " взял книги : " + bookNames);
+  }
+  System.out.println("==================================");
  }
- public void takeBook(Book books ){
-  System.out.println(readerName + " взял " + books.bookName + books.author + books.year  + " книги");
-
+ public void takeBook(Book... books ){
+  System.out.println(readerName + " взял " );
+  for (Book book : books) {
+   System.out.println(book.bookName);
+  }
+  System.out.println("==================================");
  }
 
  public void returnBook(int bookCount){
-  for (int i = 0; i<=bookCount; i++)
-   break;
   System.out.println(readerName + " вернул " + bookCount +  " книг");
-
+  System.out.println("==================================");
  }
- public void returnBook(String bookName){
-
-  System.out.println(readerName + " вернул книги " + bookName );
-
+ public void returnBook(String... bookNames){
+  for (String name : bookNames) {
+   System.out.println(readerName + " вернул книги : " + bookNames);
+  }
+  System.out.println("==================================");
  }
- public void returnBook(Book books){;
-  System.out.println(readerName + " взял " + books.bookName + books.author + books.year  + " книги");
-
+ public void returnBook(Book... books) {
+  System.out.println(readerName + " вернул ");
+  for (Book book : books) {
+   System.out.println(book.bookName);
+  }
+  System.out.println("==================================");
  }
-
 }

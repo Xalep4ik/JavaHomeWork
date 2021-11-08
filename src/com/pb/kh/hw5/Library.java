@@ -1,42 +1,42 @@
 package com.pb.kh.hw5;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+
 public class Library {
     public static void main(String[] args){
 
-        Book book1 = new Book();
-        Book book2 = new Book();
-        Book book3 = new Book();
-        book1.book = "Приключения ";
-        book2.book = "Словарь ";
-        book3.book = "Энциклопедия ";
-        book1.author = " Иванов И. И.";
-        book2.author = " Сидоров А. В.";
-        book3.author = " Гусев К. В.";
-        book1.year = " 2000 г.";
-        book2.year = " 1980 г.";
-        book3.year = " 2010 г.";
+        Book book1 = new Book("Приключения "," Иванов И. И."," 2000 г.");
+        Book book2 = new Book("Словарь "," Сидоров А. В."," 2010 г.");
+        Book book3 = new Book("Энциклопедия "," Гусев К. В."," 2010 г.");
+        Reader reader1 = new Reader("Петров В. В.","1234","Философский","20.20.1990","3809999999");
+        Reader reader2 = new Reader("Иванов И.И","5678","Географический" ,"21.21.1991","3809999991");
+        Reader reader3 = new Reader("Смирнов С.С.","9012","Литературный","22.22.1992","3809999992");
 
-        Reader reader1 = new Reader();
-        Reader reader2 = new Reader();
-        Reader reader3 = new Reader();
-        reader1.readerName = " Петров В. В. ";
-        reader2.readerName = " Иванов И.И. ";
-        reader3.readerName = " Смирнов С.С. ";
-        reader1.setNumberReader("1234");
-        reader2.setNumberReader("5678");
-        reader3.setNumberReader("8901");
-        reader1.setFaculty("Философский");
-        reader2.setFaculty("Географический");
-        reader3.setFaculty("Литературный");
+        Reader[] readers = new Reader[] {reader1,reader2,reader3};
+        System.out.println("==================================");
+        for (int a = 0; a<readers.length; a++)
+            System.out.println(readers[a]);
 
-        System.out.println(book1.infoBook() + book2.infoBook() + book3.infoBook());
-        System.out.println(reader1.infoReader() + reader2.infoReader() + reader3.infoReader());
 
-        reader1.threeBook(reader1.readerName);
-        System.out.println(reader1.takeBook() + book1.book + "," + book2.book + "," + book3.book + ".");
-        System.out.println(reader1.takeBook() + book1.infoBook() + book2.infoBook() + book3.infoBook());
-        System.out.println(reader1.returnBook() + book1.book + "," + book2.book + ","+ book3.book + ".");
-        System.out.println(reader1.returnBook() + book1.infoBook() + book2.infoBook() + book3.infoBook());
+        Book [] books = new Book[] {book1,book2,book3};
+        System.out.println("==================================");
+        System.out.println(Arrays.asList(books));
+
+
+        System.out.println("==================================");
+        reader1.takeBook(books.length);
+        System.out.println("==================================");
+        reader1.takeBook(book1.bookName+book2.bookName+book3.bookName);
+        System.out.println("==================================");
+        reader3.takeBook(book1,book2,book3);
+
+        reader2.returnBook(books.length);
+        System.out.println("==================================");
+        reader2.returnBook(book1.bookName+book2.bookName+book3.bookName);
+        System.out.println("==================================");
+        reader3.returnBook(book1,book2,book3);
+
 
 
 

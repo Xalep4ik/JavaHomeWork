@@ -4,20 +4,14 @@ import java.sql.SQLOutput;
 
 public class Book {
 
-    public String book;
+    public String bookName;
     public String author;
     public String year;
 
-     String takeBook() {
-        return "[ Взял книгу : " + book + " " + author + " " + year + "]";
+    public Book(String bookName, String author, String year) {
+        this.bookName = bookName;
+        this.author = author;
+        this.year = year;
     }
-     String returnBook() {
-        return "[ Вернул книгу : " + book + " " + author + " " + year + "]";
-    }
-     String infoBook (){
-         return "[" + book + author + year + "]";
-    }
-
-
 }
 

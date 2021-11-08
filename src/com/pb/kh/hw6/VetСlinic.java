@@ -8,9 +8,9 @@ public class VetСlinic {
 
     public static void main(String[] args) throws Exception {
 
-        Animal dog = new Animal("Тузик ", "Мясо ", "Будка ");
-        Animal cat = new Animal("Барсик ", "Рыба ", "Дом ");
-        Animal horse = new Animal("Молния ", "Трава ", "Конюшня ");
+        Dog dog = new Dog("Тузик ","Мясо ","Будка ");
+        Cat cat = new Cat("Барсик ","Рыба ","Дом ");
+        Horse horse = new Horse("Молния ","Трава ","Конюшня ");
 
         cat.makeNoise();
         cat.eat();
@@ -18,7 +18,7 @@ public class VetСlinic {
 
         System.out.println("Dog is cat :" + dog.equals(cat));
         System.out.println("Dog Hashcode :" + dog.hashCode());
-        System.out.println("Cat is horse :" + cat.equals(horse));
+        System.out.println("Cat is cat :" + cat.equals(cat));
         System.out.println("Cat Hashcode :" + cat.hashCode());
 
         Animal[] animals = new Animal[]{cat, dog, horse};

@@ -10,6 +10,7 @@ public class Dog extends Animal{
         super(name, food, location);
     }
 
+
     @Override
     public void makeNoise() {
         super.makeNoise();

@@ -36,14 +36,5 @@ public class Horse extends Animal{
                 ", location='" + getLocation() + '\'' +
                 '}';
     }
-        public boolean equals(Object o) {
-        System.out.println("Сравнение животных: ");
-        return super.equals(o);
-    }
 
-    @Override
-    public int hashCode() {
-        System.out.println(getName() + "hash: ");
-        return super.hashCode();
-    }
 }

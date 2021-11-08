@@ -16,22 +16,24 @@ public class VetСlinic {
         cat.eat();
         cat.sleep();
 
+        System.out.println("==================================");
         System.out.println("Dog is cat :" + dog.equals(cat));
         System.out.println("Dog Hashcode :" + dog.hashCode());
         System.out.println("Cat is cat :" + cat.equals(cat));
         System.out.println("Cat Hashcode :" + cat.hashCode());
 
+        System.out.println("==================================");
         Animal[] animals = new Animal[]{cat, dog, horse};
         System.out.println(Arrays.asList(animals));
         System.out.println("==================================");
 
 
         Veterinarian veterinarian = new Veterinarian();
-        Animal[] animals1 = new Animal[] {cat,dog,horse};
+
         for (Animal animal: animals) {
             veterinarian.treatAnimal(animal);
         }
-        System.out.println("-----------------------------------");
+        System.out.println("==================================");
 
 
 

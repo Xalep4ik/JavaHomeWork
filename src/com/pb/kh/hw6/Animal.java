@@ -6,17 +6,15 @@ import java.util.Objects;
 
 public class Animal {
 
+    private String name;
+    private String food;
+    private String location;
+
     public Animal(String name, String food, String location) {
         this.name = name;
         this.food = food;
         this.location = location;
     }
-
-    private String name;
-    private String food;
-    private String location;
-
-
 
     public String getFood() {
         return food;

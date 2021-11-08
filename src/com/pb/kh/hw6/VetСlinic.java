@@ -25,14 +25,14 @@ public class VetСlinic {
         System.out.println(Arrays.asList(animals));
         System.out.println("==================================");
 
+
         Veterinarian veterinarian = new Veterinarian();
-        Class clazz = veterinarian.getClass();
-        System.out.println(clazz);
-        veterinarian.treatAnimal(cat);
-        veterinarian.treatAnimal(dog);
-        veterinarian.treatAnimal(horse);
+        Animal[] animals1 = new Animal[] {cat,dog,horse};
+        for (Animal animal: animals) {
+            veterinarian.treatAnimal(animal);
+        }
         System.out.println("-----------------------------------");
-        clazz.getConstructor();
+
 
 
     }

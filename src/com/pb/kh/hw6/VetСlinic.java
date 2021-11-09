@@ -34,6 +34,11 @@ public class VetСlinic {
             veterinarian.treatAnimal(animal);
         }
         System.out.println("==================================");
+        veterinarian.treatAnimal(dog);
+
+
+
+
 
 
 

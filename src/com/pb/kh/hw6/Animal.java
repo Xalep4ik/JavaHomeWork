@@ -16,6 +16,44 @@ public class Animal {
         this.location = location;
     }
 
+        public void makeNoise () { System.out.println( name + "животное говорит : "); }
+
+        public void eat () { System.out.println( name + "животное ест : "); }
+
+        public void sleep () {
+            System.out.println( name + "животное спит. ");
+        }
+
+    @Override
+    public String toString() {
+        return "Animal{" +
+                "name='" + name + '\'' +
+                ", food='" + food + '\'' +
+                ", location='" + location + '\'' +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Animal animal = (Animal) o;
+        return Objects.equals(name, animal.name) && Objects.equals(food, animal.food) && Objects.equals(location, animal.location);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, food, location);
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getFood() {
         return food;
     }
@@ -30,32 +68,5 @@ public class Animal {
 
     public void setLocation(String location) {
         this.location = location;
-    }
-
-        public String getName() { return name; }
-
-        public void setName(String name) { this.name = name; }
-
-        public void makeNoise () { System.out.println( name + "животное говорит : "); }
-
-        public void eat () { System.out.println( name + "животное ест : "); }
-
-        public void sleep () {
-            System.out.println( name + "животное спит. ");
-        }
-
-
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Animal animal = (Animal) o;
-        return Objects.equals(name, animal.name) && Objects.equals(food, animal.food) && Objects.equals(location, animal.location);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name, food, location);
     }
 }

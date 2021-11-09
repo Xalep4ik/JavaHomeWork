@@ -1,5 +1,7 @@
 package com.pb.kh.hw6;
 
+import java.util.Objects;
+
 public class Horse extends Animal{
 
     public String speedy = "Быстрый";
@@ -10,21 +12,18 @@ public class Horse extends Animal{
 
     @Override
     public void makeNoise() {
-
         super.makeNoise();
         System.out.println(" Игго го ");
     }
 
     @Override
     public void eat() {
-
         super.eat();
         System.out.println(getFood());
     }
 
     @Override
     public void sleep() {
-
         super.sleep();
         System.out.println("ZZZzzz");
     }
@@ -37,4 +36,17 @@ public class Horse extends Animal{
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Horse horse = (Horse) o;
+        return Objects.equals(speedy, horse.speedy);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), speedy);
+    }
 }

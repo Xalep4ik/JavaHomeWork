@@ -26,7 +26,7 @@ public class Dog extends Animal{
     @Override
     public void sleep() {
         super.sleep();
-        System.out.println("ZZZzzz");
+        System.out.println(getName() + "ZZZzzz");
     }
 
     @Override
@@ -38,5 +38,18 @@ public class Dog extends Animal{
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        Dog dog = (Dog) o;
+        return Objects.equals(friendly, dog.friendly);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), friendly);
+    }
 }
 

@@ -13,24 +13,52 @@ public class Auth {
 
     public Auth (){}
 
+
     public void signUp() throws WrongLoginException,WrongPasswordException {
 
-        System.out.println("Регистрация на сайте : ");
+        System.out.println("Регистрация на сайте, введите логин и пароль :");
 
-        if (5>login.length() || login.length()<=20)
-            Pattern.matches("[a-zA-Z0-9]{5,20}",login);
-        {
+        if (Pattern.matches("[a-zA-Z0-9]{5,20}" , login)) {
             System.out.println("Логин принят , введите пароль :");
+            setLogin(login);
+            }
+        else {
+            System.out.println("Неверный формат логина !");
+            throw new WrongLoginException(login);
         }
 
-            System.out.println("Неверный формат логина !" );
-
-        if (password.length()<8){
+        if (Pattern.matches("[a-zA-Z0-9]{4,500}", password)){
+            System.out.println("Пароль принят ! Подтвердите пароль : ");
+            setPassword(password);
+        }else {
             System.out.println("Неверный формат пароля !");
+            throw new WrongPasswordException();
         }
+        if (password != null && password.matches(confirmPassword)) {
+            System.out.println("Регистрация прошла успешно !");
+            Auth auth = new Auth();
+        }else {
+            System.out.println("Пароль не совпадает !");
+            throw new WrongPasswordException();
+        }
+
     }
 
-    public void signIn(){}
+    public void signIn() throws WrongLoginException,WrongPasswordException{
+
+        if (login.matches(getLogin())){
+            System.out.println("Шаг 2 : введитепароль :");
+        }else {
+            System.out.println("Не коректрые данные !");
+            throw new WrongLoginException(login);
+        }
+        if (password.matches(getPassword())){
+            System.out.println("Вход выполнен успешно !");
+        }else {
+            System.out.println("Не верные данные !");
+            throw new WrongPasswordException();
+        }
+    }
 
     public String getLogin() {
         return login;

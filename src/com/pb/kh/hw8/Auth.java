@@ -45,16 +45,18 @@ public class Auth {
     }
 
     public void signIn() throws WrongLoginException,WrongPasswordException{
+        System.out.println("-----------------------------");
         System.out.println("Выполните вход :");
-        login = scanner.nextLine();
-        if (login.matches(getLogin())){
+        String login2 = scanner.nextLine();
+
+        if (login2.matches(login)){
             System.out.println("Шаг 2 : введите пароль :");
         }else {
             System.out.println("Не коректрые данные !");
             throw new WrongLoginException(login);
         }
-        password = scanner.nextLine();
-        if (this.password.equals(password){
+        String password2= scanner.nextLine();
+        if (password2.matches(password)){
             System.out.println("Вход выполнен успешно !");
         }else {
             System.out.println("Не верные данные !");

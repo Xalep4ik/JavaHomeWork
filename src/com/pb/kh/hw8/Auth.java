@@ -7,17 +7,16 @@ public class Auth {
 
     Scanner scanner = new Scanner(System.in);
 
-    private String login = scanner.nextLine();
-    private String password = scanner.nextLine();
-    private String confirmPassword = scanner.nextLine();
+    private String login ;
+    private String password ;
 
-    public Auth (){}
 
 
     public void signUp() throws WrongLoginException,WrongPasswordException {
 
         System.out.println("Регистрация на сайте, введите логин и пароль :");
 
+        login = scanner.nextLine();
         if (Pattern.matches("[a-zA-Z0-9]{5,20}" , login)) {
             System.out.println("Логин принят , введите пароль :");
             setLogin(login);
@@ -26,7 +25,7 @@ public class Auth {
             System.out.println("Неверный формат логина !");
             throw new WrongLoginException(login);
         }
-
+        password = scanner.nextLine();
         if (Pattern.matches("[a-zA-Z0-9]{4,500}", password)){
             System.out.println("Пароль принят ! Подтвердите пароль : ");
             setPassword(password);
@@ -34,9 +33,10 @@ public class Auth {
             System.out.println("Неверный формат пароля !");
             throw new WrongPasswordException();
         }
+        String confirmPassword = scanner.nextLine();
         if (password != null && password.matches(confirmPassword)) {
             System.out.println("Регистрация прошла успешно !");
-            Auth auth = new Auth();
+           // Auth auth = new Auth();
         }else {
             System.out.println("Пароль не совпадает !");
             throw new WrongPasswordException();
@@ -45,14 +45,16 @@ public class Auth {
     }
 
     public void signIn() throws WrongLoginException,WrongPasswordException{
-
+        System.out.println("Выполните вход :");
+        login = scanner.nextLine();
         if (login.matches(getLogin())){
-            System.out.println("Шаг 2 : введитепароль :");
+            System.out.println("Шаг 2 : введите пароль :");
         }else {
             System.out.println("Не коректрые данные !");
             throw new WrongLoginException(login);
         }
-        if (password.matches(getPassword())){
+        password = scanner.nextLine();
+        if (this.password.equals(password){
             System.out.println("Вход выполнен успешно !");
         }else {
             System.out.println("Не верные данные !");
@@ -76,11 +78,4 @@ public class Auth {
         this.password = password;
     }
 
-    public String getConfirmPassword() {
-        return confirmPassword;
-    }
-
-    public void setConfirmPassword(String confirmPassword) {
-        this.confirmPassword = confirmPassword;
-    }
 }

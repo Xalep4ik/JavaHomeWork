@@ -36,7 +36,7 @@ public class Auth {
         String confirmPassword = scanner.nextLine();
         if (password != null && password.matches(confirmPassword)) {
             System.out.println("Регистрация прошла успешно !");
-           // Auth auth = new Auth();
+
         }else {
             System.out.println("Пароль не совпадает !");
             throw new WrongPasswordException();

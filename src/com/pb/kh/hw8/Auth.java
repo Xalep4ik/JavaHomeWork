@@ -17,7 +17,7 @@ public class Auth {
         System.out.println("Регистрация на сайте, введите логин и пароль :");
 
         login = scanner.nextLine();
-        if (Pattern.matches("[a-zA-Z0-9]{5,20}" , login)) {
+        if (Pattern.matches("[a-zA-Z0-9_]{5,20}" , login)) {
             System.out.println("Логин принят , введите пароль :");
             setLogin(login);
             }

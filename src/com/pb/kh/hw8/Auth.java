@@ -19,7 +19,7 @@ public class Auth {
         login = scanner.nextLine();
         if (Pattern.matches("[a-zA-Z0-9_]{5,20}" , login)) {
             System.out.println("Логин принят , введите пароль :");
-            setLogin(login);
+
             }
         else {
             System.out.println("Неверный формат логина !");
@@ -28,7 +28,7 @@ public class Auth {
         password = scanner.nextLine();
         if (Pattern.matches("[a-zA-Z0-9]{4,500}", password)){
             System.out.println("Пароль принят ! Подтвердите пароль : ");
-            setPassword(password);
+
         }else {
             System.out.println("Неверный формат пароля !");
             throw new WrongPasswordException();

@@ -2,6 +2,8 @@ package com.pb.kh.hw9;
 
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
+import java.io.Writer;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -13,9 +15,11 @@ public class FileNumbers {
 
 
     public static void createNumbersFile(){
+
         Random random = new Random();
+
         Path path = Paths.get("file\\numbers.txt");
-        // File nums = new File("D:\\JavaHomeWork\\file\\numbers.txt");
+
         try (BufferedWriter writer = Files.newBufferedWriter(path)) {
 
             int sizeI = 10;
@@ -36,22 +40,49 @@ public class FileNumbers {
 
                 System.out.print("\n");
             }
-
         } catch (Exception ex) {
-            System.out.println("Error with file write: " + ex);
+            System.out.println("Не вышло записать файл :" + ex);
         }
-        System.out.println("Write to file \"" + path.toAbsolutePath() + "\" done!");
+        System.out.println("Файл создан!");
     }
 
     public static void createOddNumbersFile(){
 
-        //if (n % 2 == 0) n = 0 замена четных
+        File fileIn = new File("file\\numbers.txt");
+
+        if (fileIn.exists()){
+            try {
+                Scanner scan  = new Scanner(fileIn);
+                Writer writer = new FileWriter("file\\odd-numbers.txt");
+                while (scan.hasNextInt()){
+
+                    Integer integer = scan.nextInt();
+                    if ( integer % 2 == 0) {
+                        writer.write("0");
+                    }
+                    else {
+                        writer.write(integer.toString());
+                    }
+                    if (scan.hasNextInt()){
+                        writer.write(" ");
+                    }
+                }
+                writer.close();
+                scan.close();
+            }
+            catch (Exception e){
+                e.printStackTrace();
+            }
+            System.out.println("Файл успешно перезаписан !");
+        }
     }
 
 
     public static void main(String[] args) {
 
         createNumbersFile();
+
+        createOddNumbersFile();
 
         }
 

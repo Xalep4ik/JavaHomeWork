@@ -10,18 +10,26 @@ public class Main {
         number.add(66);
         number.add(33);
         number.add(44);
-        // number.set(5, 55);
+        //number.add(55);
 
         floatNumBox.add(19.0f);
         floatNumBox.add(11.0f);
         floatNumBox.add(22.2f);
         floatNumBox.add(33.3f);
-        //floatNumBox.set(4, 44.4f);
+        //floatNumBox.add(44.4f);
+
+        System.out.println(number.get(3));
+        System.out.println(floatNumBox.get(3));
 
         System.out.println(number.length());
+        System.out.println(floatNumBox.length());
+
         System.out.println(number.sum());
         System.out.println(floatNumBox.sum());
+
         System.out.println(number.average());
+        System.out.println(floatNumBox.average());
+
         System.out.println(number.max());
         System.out.println(floatNumBox.max());
 

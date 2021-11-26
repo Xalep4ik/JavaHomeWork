@@ -5,23 +5,23 @@ public class Main {
         NumBox<Integer> number = new NumBox<Integer>(5);
         NumBox<Float> floatNumBox = new NumBox<>(4);
 
-        number.set(0,1);
-        number.set(1, 11);
-        number.set(2, 22);
-        number.set(3, 33);
-        number.set(4, 44);
+        number.add(1);
+        number.add(11);
+        number.add(22);
+        number.add(33);
+        number.add(44);
         // number.set(5, 55);
 
-        floatNumBox.set(0, 19.0f);
-        floatNumBox.set(1, 11.0f);
-        floatNumBox.set(2, 22.2f);
-        floatNumBox.set(3, 33.3f);
+        floatNumBox.add(19.0f);
+        floatNumBox.add(11.0f);
+        floatNumBox.add(22.2f);
+        floatNumBox.add(33.3f);
         //floatNumBox.set(4, 44.4f);
 
         System.out.println(number.length());
         System.out.println(number.sum());
         System.out.println(floatNumBox.sum());
-        System.out.println(number.max());
+
 
 
     }

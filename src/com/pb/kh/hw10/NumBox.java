@@ -1,7 +1,5 @@
 package com.pb.kh.hw10;
 
-import java.util.Arrays;
-
 public class NumBox <T extends Number>{
 
     public T[] number;
@@ -12,26 +10,15 @@ public class NumBox <T extends Number>{
     }
 
     public void add(T numbe) {
-        try {
             if (size < number.length) {
                 number[size] = numbe;
                 size++;
-            }
-        }
-        catch (ArrayIndexOutOfBoundsException a){
-            a.getMessage();
-        }
+            }else throw new RuntimeException();
     }
     public T get(int index) {
         return number[index];
     }
-    public void set(int index, T numbers) {
-        this.number[index] = numbers;
-    }
     public int length(){
-        if (size>number.length){
-            size--;
-        }
         return size;
     }
 

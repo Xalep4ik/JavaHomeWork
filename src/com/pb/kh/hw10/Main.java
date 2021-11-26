@@ -7,7 +7,7 @@ public class Main {
 
         number.add(1);
         number.add(11);
-        number.add(22);
+        number.add(66);
         number.add(33);
         number.add(44);
         // number.set(5, 55);
@@ -21,6 +21,9 @@ public class Main {
         System.out.println(number.length());
         System.out.println(number.sum());
         System.out.println(floatNumBox.sum());
+        System.out.println(number.average());
+        System.out.println(number.max());
+        System.out.println(floatNumBox.max());
 
 
 

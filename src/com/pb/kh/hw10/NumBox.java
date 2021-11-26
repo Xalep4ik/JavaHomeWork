@@ -16,19 +16,22 @@ public class NumBox <T extends Number>{
             }else throw new RuntimeException();
     }
     public T get(int index) {
-        return number[index];
+        if (index<size) {
+            return number[index];
+        }
+        else throw new ArrayIndexOutOfBoundsException();
     }
     public int length(){
         return size;
     }
 
-/*    public double average() {
-        double average1 = 0;
-        for (int i = 0; i < average1; i++) {
-            average1 += number[i];
+    public double average() {
+        double average = 0;
+        for (int i = 0; i < size; i++) {
+            average += number[i].doubleValue();
         }
-        return average1;
-    }*/
+        return average/size;
+    }
     public double sum(){
         double sum = 0.0;
         for (T i : number) {
@@ -38,16 +41,26 @@ public class NumBox <T extends Number>{
         }
        return sum;
     }
-/*    public T max (){
+    public T max (){
         T maxval = number[0];
-        for (int i =0; i<number.length; i++) {
+        for (int i =0; i<size; i++) {
             if (maxval instanceof Integer) {
-                if ((int) number[i] > (int) maxval) {
+                if ( number[i].intValue() >  maxval.intValue()) {
                     maxval = number[i];
+                }
+            }
+            if (maxval instanceof Float) {
+                if (number[i].floatValue()>maxval.floatValue()) {
+                 maxval = number[i];
+                }
+            }
+            if (maxval instanceof Double){
+                if (number[i].doubleValue()>maxval.doubleValue()){
+                    maxval=number[i];
                 }
             }
         }
         return maxval;
-    }*/
+    }
 }
 

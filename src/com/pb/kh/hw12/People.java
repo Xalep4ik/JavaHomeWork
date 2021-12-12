@@ -3,6 +3,7 @@ package com.pb.kh.hw12;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Collections;
+import java.util.stream.Collector;
 
 public class People {
 

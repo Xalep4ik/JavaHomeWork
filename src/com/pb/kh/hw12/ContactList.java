@@ -1,31 +1,39 @@
 package com.pb.kh.hw12;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 
-import java.io.BufferedWriter;
-import java.nio.file.*;
+import java.io.File;
+import java.io.IOException;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.Scanner;
 import java.util.stream.Collectors;
 
 public class ContactList {
 
-    public static void main(String[] args) throws JsonProcessingException {
-
+    public static void main(String[] args) throws IOException {
 
         Scanner sc = new Scanner(System.in);
         ObjectMapper om = new ObjectMapper();
         om.enable(SerializationFeature.INDENT_OUTPUT);
 
-         List<People> people = new ArrayList<>();
-         people.add(new People("Sam", "678909876"));
-         people.add(new People("Rik", "78439868754"));
-         people.add(new People("Morti", "47875784"));
+        SimpleModule module = new SimpleModule();
+        module.addSerializer(LocalDate.class, new LocalDateSerializer());
+        module.addDeserializer(LocalDate.class, new LocalDateDeserializer());
+        om.registerModule(module);
 
+        List<People> people = new ArrayList<>();
+        people.add(new People("Sam", "567898765", "Rio", LocalDate.of(1988, 2, 2)));
+        people.add(new People("Rik", "78439868754", "Tokio", LocalDate.of(1987, 3, 3)));
+        people.add(new People("Morti", "47875784", "Montecarlo", LocalDate.of(1986, 4, 4)));
 
-        String writetofile = om.writeValueAsString(people);
+        //om.writeValue(new File("file\\contactslist"), people);
+        String peopleJson = om.writeValueAsString(people);
 
         System.out.println("Файл создан!");
 
@@ -34,29 +42,35 @@ public class ContactList {
                 "delete - для удаления " +
                 "search - для поиска " +
                 "show n - вывод всех записей по имени " +
-                "show p - вывод всех записей по номеру " +
-                "renew - редактирование элемента " +
+                "show b - вывод всех записей по дате рождения " +
+                "update - редактирование элемента " +
+                "view - для просмотра файла контактов " +
                 "exit - для выхода ");
 
-            String option = sc.nextLine();
+        String option = sc.nextLine();
+
+
+        while (!option.equals("exit")) {
 
             switch (option) {
                 case "new":
                     System.out.println("Введите данные контакта в формате : Имя, номер телефона, адресс, дата рождения (год,месяц,день) :");
-                    people.add(new People(sc.nextLine(), sc.nextLine()));
+                    people.add(new People(sc.nextLine(), sc.nextLine(), sc.nextLine(), LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt())));
+                    om.writeValue(new File("file\\contactslist"), people);
+                    om.writeValueAsString(people);
+                    System.out.println("Контакт добавлен ! " + LocalDateTime.now());
                     System.out.println(people);
                     break;
                 case "delete":
                     System.out.println("Введите имя для удаления контакта : ");
                     DeleteByName(people, sc.nextLine());
                     System.out.println("Контакт удален ! " + LocalDateTime.now());
+                    om.writeValue(new File("file\\contactslist"), people);
                     System.out.println(people);
                     break;
                 case "search":
                     System.out.println("Введите имя для поиска :");
-                    //writetofile = om.writeValueAsString(SearchByName(people, sc.nextLine()));
                     System.out.println(SearchByName(people, sc.nextLine()));
-                    //System.out.println(writetofile);
                     break;
                 case "show n":
                     people.stream()
@@ -64,37 +78,50 @@ public class ContactList {
                             .entrySet()
                             .forEach(System.out::println);
                     break;
-                case "show p":
+                case "show b":
                     people.stream()
-                            .collect(Collectors.groupingBy(People::getPhonenumber))
+                            .collect(Collectors.groupingBy(People::getDateOfBirthday))
                             .entrySet()
                             .forEach(System.out::println);
                     break;
-                case "renew":
+                case "update":
                     System.out.println("Введите имя контакта");
-                    people.stream().filter(people1 -> people.contains(sc.nextLine()));
-
+                    String search = sc.nextLine();
+                    boolean b = false;
+                    for (People people1 : people) {
+                        if (people1.getName().equals(search)) {
+                            people1.setName(sc.nextLine());
+                            people1.setPhonenumber(sc.nextLine());
+                            b = true;
+                            break;
+                        }
+                    }
+                    if (!b) {
+                        System.out.println("Человек не найден !");
+                    }
+                    om.writeValue(new File("file\\contactslist"), people);
+                    om.writeValueAsString(people);
+                    System.out.println(people);
                     break;
-                case "exit":
-                    System.out.println("Завершение работы");
+                case "view":
+                    List peoples = om.readValue(peopleJson, List.class);
+                    System.out.println(peoples.get(0).getClass().getName());
+                    System.out.println(peoples);
+                    break;
+                default:
+                    System.out.println("Введите команду !");
                     break;
             }
+            option = sc.nextLine();
+        }
+
     }
 
-
-    public static  List<People> SearchByName (List<People> people, String name){
+    public static List<People> SearchByName(List<People> people, String name) {
         return people.stream().filter(people1 -> people1.getName().equals(name)).collect(Collectors.toList());
     }
-    public static boolean DeleteByName(List<People> people, String name){
+
+    public static boolean DeleteByName(List<People> people, String name) {
         return people.removeIf(peopl -> Arrays.equals(peopl.getName().toCharArray(), name.toCharArray()));
     }
-    public void WriteToFile(){
-        Path path = Paths.get("file\\contacts.txt");
-        try (BufferedWriter writer = Files.newBufferedWriter(path)) {
-            writer.newLine();
-        } catch (Exception ex) {
-            System.out.println("Не вышло записать файл :" + ex);
-        }
-    }
-
 }

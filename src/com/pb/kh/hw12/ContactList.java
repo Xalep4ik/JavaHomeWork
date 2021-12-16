@@ -32,8 +32,9 @@ public class ContactList {
         people.add(new People("Rik", "78439868754", "Tokio", LocalDate.of(1987, 3, 3)));
         people.add(new People("Morti", "47875784", "Montecarlo", LocalDate.of(1986, 4, 4)));
 
-        //om.writeValue(new File("file\\contactslist"), people);
 
+
+        String writetofile = om.writeValueAsString(people);
 
         System.out.println("Файл создан!");
 
@@ -55,9 +56,18 @@ public class ContactList {
             switch (option) {
                 case "new":
                     System.out.println("Введите данные контакта в формате : Имя, номер телефона, адресс, дата рождения (год,месяц,день) :");
-                    people.add(new People(sc.nextLine(), sc.nextLine(), sc.nextLine(), LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt())));
-                    om.writeValue(new File("file\\contactslist"), people);
-                    System.out.println("Контакт добавлен ! " + LocalDateTime.now());
+<<<<<<<<< Temporary merge branch 1
+                    new People(sc.nextLine(), sc.nextLine());
+                    String addNew = om.writeValueAsString(people);
+                    try (BufferedWriter writer = Files.newBufferedWriter(path)) {
+                        writer.write(addNew);
+                    } catch (Exception ex) {
+                        System.out.println("Не вышло записать файл :" + ex);
+                    }
+                    System.out.println("Контакт добавлен !" + LocalDateTime.now());
+                    System.out.println(addNew);
+=========
+                    people.add(new People(sc.nextLine(), sc.nextLine()));
                     System.out.println(people);
                     break;
                 case "delete":
@@ -102,20 +112,11 @@ public class ContactList {
                     om.writeValueAsString(people);
                     System.out.println(people);
                     break;
-                case "view":
-                    String peopleJson = om.writeValueAsString(people);
-                    List peoples = om.readValue(peopleJson, List.class);
-                    System.out.println(peoples.get(0).getClass().getName());
-                    System.out.println(peoples);
-                    break;
-                default:
-                    System.out.println("Введите команду !");
-                    om.writeValue(new File("file\\contactslist"), people);
+                case "exit":
+                    System.out.println("Завершение работы");
                     break;
             }
-            om.writeValue(new File("file\\contactslist.txt"), people);
-            option = sc.nextLine();
-        }
+    }
 
     }
 

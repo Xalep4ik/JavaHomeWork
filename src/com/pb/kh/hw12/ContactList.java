@@ -32,11 +32,6 @@ public class ContactList {
         people.add(new People("Rik", "78439868754", "Tokio", LocalDate.of(1987, 3, 3)));
         people.add(new People("Morti", "47875784", "Montecarlo", LocalDate.of(1986, 4, 4)));
 
-        //om.writeValue(new File("file\\contactslist"), people);
-
-
-        System.out.println("Файл создан!");
-
         System.out.println("Ведите команду : " +
                 "new - для создания нового контакта " +
                 "delete - для удаления " +
@@ -51,11 +46,11 @@ public class ContactList {
 
 
         while (!option.equals("exit")) {
-
+            om.writeValue(new File("file\\contactslist"), people);
             switch (option) {
                 case "new":
                     System.out.println("Введите данные контакта в формате : Имя, номер телефона, адресс, дата рождения (год,месяц,день) :");
-                    people.add(new People(sc.nextLine(), sc.nextLine(), sc.nextLine(), LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt())));
+                    people.add(new People(sc.nextLine(), sc.nextLine(), sc.nextLine(),LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt())));
                     om.writeValue(new File("file\\contactslist"), people);
                     System.out.println("Контакт добавлен ! " + LocalDateTime.now());
                     System.out.println(people);
@@ -86,11 +81,14 @@ public class ContactList {
                 case "update":
                     System.out.println("Введите имя контакта");
                     String search = sc.nextLine();
+                    System.out.println("ВВедите новые данный :");
                     boolean b = false;
                     for (People people1 : people) {
                         if (people1.getName().equals(search)) {
                             people1.setName(sc.nextLine());
                             people1.setPhonenumber(sc.nextLine());
+                            people1.setAdress(sc.nextLine());
+                            people1.setDateOfBirthday(LocalDate.of(sc.nextInt(), sc.nextInt(), sc.nextInt()));
                             b = true;
                             break;
                         }
@@ -102,12 +100,15 @@ public class ContactList {
                     om.writeValueAsString(people);
                     System.out.println(people);
                     break;
+
                 case "view":
                     String peopleJson = om.writeValueAsString(people);
                     List peoples = om.readValue(peopleJson, List.class);
                     System.out.println(peoples.get(0).getClass().getName());
                     System.out.println(peoples);
                     break;
+                case "exit":
+                    System.out.println("Завершение работы");
                 default:
                     System.out.println("Введите команду !");
                     om.writeValue(new File("file\\contactslist"), people);

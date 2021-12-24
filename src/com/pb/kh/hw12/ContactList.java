@@ -1,5 +1,6 @@
 package com.pb.kh.hw12;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
 import com.fasterxml.jackson.databind.module.SimpleModule;
@@ -32,6 +33,7 @@ public class ContactList {
         people.add(new People("Rik", "78439868754", "Tokio", LocalDate.of(1987, 3, 3)));
         people.add(new People("Morti", "47875784", "Montecarlo", LocalDate.of(1986, 4, 4)));
 
+
         System.out.println("Ведите команду : " +
                 "new - для создания нового контакта " +
                 "delete - для удаления " +
@@ -57,14 +59,16 @@ public class ContactList {
                     break;
                 case "delete":
                     System.out.println("Введите имя для удаления контакта : ");
-                    DeleteByName(people, sc.nextLine());
+                    String name = sc.nextLine();
+                    people.removeIf(peopl -> Arrays.equals(peopl.getName().toCharArray(), name.toCharArray()));
                     System.out.println("Контакт удален ! " + LocalDateTime.now());
                     om.writeValue(new File("file\\contactslist"), people);
                     System.out.println(people);
                     break;
                 case "search":
                     System.out.println("Введите имя для поиска :");
-                    System.out.println(SearchByName(people, sc.nextLine()));
+                    String name2 = sc.nextLine();
+                    System.out.println(people.stream().filter(people1 -> people1.getName().equals(name2)).collect(Collectors.toList()));
                     break;
                 case "show n":
                     people.stream()
@@ -103,12 +107,13 @@ public class ContactList {
 
                 case "view":
                     String peopleJson = om.writeValueAsString(people);
-                    List peoples = om.readValue(peopleJson, List.class);
+                    List<People> peoples = om.readValue(peopleJson, new TypeReference<List<People>>() {});
                     System.out.println(peoples.get(0).getClass().getName());
                     System.out.println(peoples);
                     break;
                 case "exit":
                     System.out.println("Завершение работы");
+                    break;
                 default:
                     System.out.println("Введите команду !");
                     om.writeValue(new File("file\\contactslist"), people);
@@ -120,11 +125,4 @@ public class ContactList {
 
     }
 
-    public static List<People> SearchByName(List<People> people, String name) {
-        return people.stream().filter(people1 -> people1.getName().equals(name)).collect(Collectors.toList());
-    }
-
-    public static boolean DeleteByName(List<People> people, String name) {
-        return people.removeIf(peopl -> Arrays.equals(peopl.getName().toCharArray(), name.toCharArray()));
-    }
 }

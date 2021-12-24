@@ -9,12 +9,14 @@ public class People {
     private String adress;
     private LocalDate DateOfBirthday;
 
-    public People(String name, String phonenumber, String adress, LocalDate DateOfBirthday) {
+    public People() {
+    }
+
+    public People(String name, String phonenumber, String adress, LocalDate dateOfBirthday) {
         this.name = name;
         this.phonenumber = phonenumber;
         this.adress = adress;
-        this.DateOfBirthday=DateOfBirthday;
-
+        DateOfBirthday = dateOfBirthday;
     }
 
     public String getName() {
@@ -58,5 +60,6 @@ public class People {
                 ", date=" + DateOfBirthday +
                 '}';
     }
+
 }
 
